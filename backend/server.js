@@ -12,6 +12,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Connect to MongoDB
+// Currently using Local MongoDB Database You can atlas too!
 mongoose.connect('mongodb://localhost:27017/passwordManager', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
