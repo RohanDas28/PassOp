@@ -1,4 +1,4 @@
-# PassOP - Password Manager App
+# [PassOP - Password Manager App](https://pass-op.vercel.app/)
 
 This is a simple password manager web application that allows users to store and manage their passwords securely. The application consists of a front-end built with React and a back-end using Express and MongoDB for data storage.
 
@@ -11,11 +11,7 @@ The `DisplayPasswords` component is the main component responsible for displayin
 - Display a list of stored passwords with options to reveal, hide, and delete passwords.
 - Passwords are fetched from and stored in the backend.
 
-#### Usage
-
-1. Clone the repository.
-2. Install dependencies: `npm install`
-3. Run the application: `npm run dev`
+The frontend of this application is hosted on Vercel. Note that adding passwords and displaying will require the backend, use the steps below to clone the project and get started. 
 
 ## Backend (Express, MongoDB)
 
@@ -28,14 +24,11 @@ The server is built using Express and connects to a MongoDB database to store pa
 
 #### Usage
 
-1. Navigate to the `backend` directory.
+##### Start Frontend
+1. Clone the repository.
 2. Install dependencies: `npm install`
-3. Run the server: `npm run backDev`
-
-## How to Run
-
-1. Start the backend server first: `npm run backDev` (Navigate to the `backend` directory).
-2. Run the frontend application: `npm run dev` (Root directory).
+3. Start the backend server: `npm run backDev` (Navigate to the `backend` directory).
+4. Run the frontend application: `npm run dev` (Root directory).
 
 Make sure to update the MongoDB connection URI in `backend/server.js` with your own database connection details if needed.
 
