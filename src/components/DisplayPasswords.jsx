@@ -1,70 +1,68 @@
-import React from 'react'
+import React from 'react';
+import { useState } from 'react';
+import { FaEye, FaEyeSlash, FaPlusCircle, FaTrash } from 'react-icons/fa';
 
 const DisplayPasswords = () => {
+
+    // For Displaying the password when needed in the input field
+    const [showPassword, setShowPassword] = useState(false);
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
+
     return (
         <>
-            <div className="text-white p-4 flex flex-col items-center justify-center">
-                <input className='rounded-full w-3/5 py-2 text-black' />
-                <p className=''>Hello World</p>
+            <div className="text-white p-4 flex flex-col items-center justify-center gap-4">
+                <p className='text-2xl text-green-400 animate-pulse duration-1000 text-center mb-4 md:mb-8'>Enter your credentials and Enjoy</p>
+                <input type="text" placeholder="Website Name" className="border border-green-500 p-3 w-full md:w-3/5 bg-gray-800 text-white rounded-full mb-4" />
+                <div className="flex flex-col md:flex-row w-full md:w-3/5 gap-4">
+                    <input type="text" placeholder="Username" className="border border-green-500 p-3 flex-1 bg-gray-800 text-white rounded-full mb-4 md:mb-0" />
+                    <div className="relative flex-1">
+                        <input type={showPassword ? "text" : "password"} placeholder="Password" className="border border-green-500 p-3 w-full bg-gray-800 text-white rounded-full" />
+                        <button className="absolute right-2 top-1/2 transform -translate-y-1/2 text-green-400 p-2 focus:outline-none bg-transparent backdrop-filter backdrop-blur-md" onClick={togglePasswordVisibility}>
+                            {showPassword ? <FaEyeSlash /> : <FaEye />}
+                        </button>
+                    </div>
+                </div>
+                <button className="inline-flex items-center bg-green-400 border-0 py-2 px-4 focus:outline-none font-semibold text-xl hover:bg-green-500 rounded-full text-black mt-4 md:mt-0 hover:scale-105 transition ease-in-out">
+                    <FaPlusCircle /> Add
+                </button>
             </div>
-
-
-            <div className="passwords">
-                <div class="lg:w-2/3 w-full mx-auto overflow-auto">
-                    <table class="table-auto w-full text-left whitespace-no-wrap">
-                        <thead>
+            <div className="passwords my-6">
+                <div className="lg:w-2/3 w-full mx-auto overflow-auto bg-gray-800 rounded-lg">
+                    <table className="table-auto w-full text-left whitespace-no-wrap">
+                        <thead className='bg-gray-700'>
                             <tr>
-                                <th class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 rounded-tl rounded-bl">Plan</th>
-                                <th class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800">Speed</th>
-                                <th class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800">Storage</th>
-                                <th class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800">Price</th>
-                                <th class="w-10 title-font tracking-wider font-medium text-white text-sm bg-gray-800 rounded-tr rounded-br"></th>
+                                <th className="px-4 py-3 title-font tracking-wider font-medium text-green-400 text-sm rounded-tl rounded-bl">Website</th>
+                                <th className="px-4 py-3 title-font tracking-wider font-medium text-green-400 text-sm">Username</th>
+                                <th className="px-4 py-3 title-font tracking-wider font-medium text-green-400 text-sm">Password</th>
+                                <th className="px-4 py-3 title-font tracking-wider font-medium text-green-400 text-sm">Reveal Password</th>
+                                <th className="px-4 py-3 title-font tracking-wider font-medium text-green-400 text-sm">Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className='text-white'>
                             <tr>
-                                <td class="px-4 py-3">Start</td>
-                                <td class="px-4 py-3">5 Mb/s</td>
-                                <td class="px-4 py-3">15 GB</td>
-                                <td class="px-4 py-3 text-lg text-white">Free</td>
-                                <td class="w-10 text-center">
-                                    <input name="plan" type="radio" />
+                                <td className="px-4 py-3 w-1/4">ExampleWebsite.com</td>
+                                <td className="px-4 py-3 w-1/4">JohnDoe</td>
+                                <td className="px-4 py-3 w-1/4">********</td>
+                                <td className="px-4 py-3 w-1/4">
+                                    <button className='flex text-black justify-center items-center gap-2 bg-green-500 px-3 py-1 rounded-full hover:bg-green-600 transition ease-in-out'>
+                                        <FaEye /> Reveal
+                                    </button>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td class="border-t-2 border-gray-800 px-4 py-3">Pro</td>
-                                <td class="border-t-2 border-gray-800 px-4 py-3">25 Mb/s</td>
-                                <td class="border-t-2 border-gray-800 px-4 py-3">25 GB</td>
-                                <td class="border-t-2 border-gray-800 px-4 py-3 text-lg text-white">$24</td>
-                                <td class="border-t-2 border-gray-800 w-10 text-center">
-                                    <input name="plan" type="radio" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="border-t-2 border-gray-800 px-4 py-3">Business</td>
-                                <td class="border-t-2 border-gray-800 px-4 py-3">36 Mb/s</td>
-                                <td class="border-t-2 border-gray-800 px-4 py-3">40 GB</td>
-                                <td class="border-t-2 border-gray-800 px-4 py-3 text-lg text-white">$50</td>
-                                <td class="border-t-2 border-gray-800 w-10 text-center">
-                                    <input name="plan" type="radio" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="border-t-2 border-b-2 border-gray-800 px-4 py-3">Exclusive</td>
-                                <td class="border-t-2 border-b-2 border-gray-800 px-4 py-3">48 Mb/s</td>
-                                <td class="border-t-2 border-b-2 border-gray-800 px-4 py-3">120 GB</td>
-                                <td class="border-t-2 border-b-2 border-gray-800 px-4 py-3 text-lg text-white">$72</td>
-                                <td class="border-t-2 border-b-2 border-gray-800 w-10 text-center">
-                                    <input name="plan" type="radio" />
+                                <td className="px-4 py-3 w-1/4">
+                                    <button className='flex justify-center items-center gap-2 bg-red-500 px-3 py-1 rounded-full hover:bg-red-600 transition ease-in-out'>
+                                        <FaTrash /> Delete
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </>
-    )
-}
+    );
+};
 
-export default DisplayPasswords
+export default DisplayPasswords;
