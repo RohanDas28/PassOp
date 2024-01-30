@@ -1,15 +1,35 @@
 import React from 'react';
-import { useState } from 'react';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 import { FaEye, FaEyeSlash, FaPlusCircle, FaTrash } from 'react-icons/fa';
 
 const DisplayPasswords = () => {
 
-    // For Displaying the password when needed in the input field
-    const [showPassword, setShowPassword] = useState(false);
+
+    const [showPassword, setShowPassword] = useState(false); // For Password Visibility
+    const [passwords, setPasswords] = useState([]);  // Displaying The Password
+    
+
+
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
 
+    // fetching Data from backend
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/passwords`);
+                setPasswords(response.data);
+                console.log('connected to api!');
+                console.log(response.data)
+            } catch (error) {
+                console.error('Error Fetching Passwords! Check Your API! Here is More Info: ', error);
+            }
+        };
+        fetchData();
+
+    }, []);
 
     return (
         <>
@@ -30,36 +50,42 @@ const DisplayPasswords = () => {
                 </button>
             </div>
             <div className="passwords my-6">
-                <div className="lg:w-2/3 w-full mx-auto overflow-auto bg-gray-800 rounded-lg">
-                    <table className="table-auto w-full text-left whitespace-no-wrap">
-                        <thead className='bg-gray-700'>
-                            <tr>
-                                <th className="px-4 py-3 title-font tracking-wider font-medium text-green-400 text-sm rounded-tl rounded-bl">Website</th>
-                                <th className="px-4 py-3 title-font tracking-wider font-medium text-green-400 text-sm">Username</th>
-                                <th className="px-4 py-3 title-font tracking-wider font-medium text-green-400 text-sm">Password</th>
-                                <th className="px-4 py-3 title-font tracking-wider font-medium text-green-400 text-sm">Reveal Password</th>
-                                <th className="px-4 py-3 title-font tracking-wider font-medium text-green-400 text-sm">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody className='text-white'>
-                            <tr>
-                                <td className="px-4 py-3 w-1/4">ExampleWebsite.com</td>
-                                <td className="px-4 py-3 w-1/4">JohnDoe</td>
-                                <td className="px-4 py-3 w-1/4">********</td>
-                                <td className="px-4 py-3 w-1/4">
-                                    <button className='flex text-black justify-center items-center gap-2 bg-green-500 px-3 py-1 rounded-full hover:bg-green-600 transition ease-in-out'>
-                                        <FaEye /> Reveal
-                                    </button>
-                                </td>
-                                <td className="px-4 py-3 w-1/4">
-                                    <button className='flex justify-center items-center gap-2 bg-red-500 px-3 py-1 rounded-full hover:bg-red-600 transition ease-in-out'>
-                                        <FaTrash /> Delete
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                {Array.isArray(passwords) && passwords.length > 0 ? (
+                    <div className="lg:w-2/3 w-full mx-auto overflow-auto bg-gray-800 rounded-lg">
+                        <table className="table-auto w-full text-left whitespace-no-wrap">
+                            <thead className='bg-gray-700'>
+                                <tr>
+                                    <th className="px-4 py-3 title-font tracking-wider font-medium text-green-400 text-sm rounded-tl rounded-bl">Website</th>
+                                    <th className="px-4 py-3 title-font tracking-wider font-medium text-green-400 text-sm">Username</th>
+                                    <th className="px-4 py-3 title-font tracking-wider font-medium text-green-400 text-sm">Password</th>
+                                    <th className="px-4 py-3 title-font tracking-wider font-medium text-green-400 text-sm">Reveal Password</th>
+                                    <th className="px-4 py-3 title-font tracking-wider font-medium text-green-400 text-sm">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody className='text-white'>
+                                {passwords.map((password) => (
+                                    <tr key={password._id}>
+                                        <td className="px-4 py-3 w-1/4">{password.website}</td>
+                                        <td className="px-4 py-3 w-1/4">{password.username}</td>
+                                        <td className="px-4 py-3 w-1/4">{password.password}</td>
+                                        <td className="px-4 py-3 w-1/4">
+                                            <button className='flex text-black justify-center items-center gap-2 bg-green-500 px-3 py-1 rounded-full hover:bg-green-600 transition ease-in-out'>
+                                                <FaEye /> Reveal
+                                            </button>
+                                        </td>
+                                        <td className="px-4 py-3 w-1/4">
+                                            <button className='flex justify-center items-center gap-2 bg-red-500 px-3 py-1 rounded-full hover:bg-red-600 transition ease-in-out'>
+                                                <FaTrash /> Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>) : (
+                    <p className="text-white text-center">Loading...</p>
+                )
+                }
             </div>
         </>
     );
