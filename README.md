@@ -1,36 +1,41 @@
-# [PassOP - Password Manager App](https://pass-op.vercel.app/)
+# 🌟 [PassOP - Password Manager App](https://pass-op.vercel.app/) 🌟
 
-This is a simple password manager web application that allows users to store and manage their passwords securely. The application consists of a front-end built with React and a back-end using Express and MongoDB for data storage.
+A secure and user-friendly password manager web application, built with React for the frontend and Express and MongoDB for the backend.
 
 ## Frontend (React)
 
+The `DisplayPasswords` component is the heart of the application, offering convenient features:
 
-The `DisplayPasswords` component is the main component responsible for displaying and managing passwords. It includes features such as:
+- 🚀 Add new passwords with website name, username, and password.
+- 📋 Display a list of stored passwords with options to reveal, hide, and delete.
+- 🔗 Passwords are seamlessly fetched from and stored in the backend.
 
-- Add a new password with website name, username, and password.
-- Display a list of stored passwords with options to reveal, hide, and delete passwords.
-- Passwords are fetched from and stored in the backend.
-
-The frontend of this application is hosted on Vercel. Note that adding passwords and displaying will require the backend, use the steps below to clone the project and get started. 
+The frontend is hosted on Vercel. To explore all features, follow the setup steps below.
 
 ## Backend (Express, MongoDB)
 
 ### Server Configuration (backend/server.js)
 
-The server is built using Express and connects to a MongoDB database to store password data. Key features include:
+The Express server connects to a MongoDB database to securely store password data. Key features include:
 
-- Endpoints for retrieving, adding, and deleting passwords.
-- Password data is stored in a MongoDB database using Mongoose.
+- 🔄 Endpoints for retrieving, adding, and deleting passwords.
+- 📦 Password data is stored in a MongoDB database using Mongoose.
 
-#### Usage
+### Usage
 
-##### Start Frontend
+#### 🚀 Start Frontend
 1. Clone the repository.
 2. Install dependencies: `npm install`
-3. Start the backend server: `npm run backDev` (Navigate to the `backend` directory).
-4. Run the frontend application: `npm run dev` (Root directory).
+3. Create a `.env` file in the root directory with the following content:
 
-Make sure to update the MongoDB connection URI in `backend/server.js` with your own database connection details if needed.
+   ```env
+   VITE_API_URL=http://localhost:3001/api
+   MONGO_URI=<your-mongo-uri>
+   ```
+   Replace `<your-mongo-uri>` with your actual MongoDB connection URI.
+
+4. Start the backend server: `npm run backDev` (Navigate to the `backend` directory).
+5. Run the frontend application: `npm run dev` (Root directory).
 
 **Note:** The application is set up with [Vite](https://vitejs.dev/) for the frontend and uses [MongoDB](https://www.mongodb.com/) as the database. Ensure you have Node.js installed.
 
@@ -42,9 +47,10 @@ Make sure to update the MongoDB connection URI in `backend/server.js` with your 
 - Axios
 - Tailwind CSS
 - Vite
+- dotenv
 
 ## Acknowledgments
 
 This project was created as a simple example of a password manager application. Feel free to customize and enhance it based on your requirements.
 
-**Happy coding!**
+🚀 **Happy coding!** 🚀

@@ -3,6 +3,10 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors'
+import dotenv from 'dotenv';
+dotenv.config();
+
+
 // Create an Express app
 const app = express();
 const PORT = 3001;
@@ -13,7 +17,7 @@ app.use(bodyParser.json());
 
 // Connect to MongoDB
 // Currently using Local MongoDB Database You can atlas too!
-mongoose.connect('mongodb://localhost:27017/passwordManager', {
+mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });

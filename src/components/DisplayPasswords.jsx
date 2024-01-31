@@ -107,7 +107,7 @@ const DisplayPasswords = () => {
                         </button>
                     </div>
                 </div>
-                <button onClick={addPassword} className="inline-flex items-center bg-green-400 border-0 py-2 px-4 focus:outline-none font-semibold text-xl hover:bg-green-500 rounded-full text-black mt-4 md:mt-0 hover:scale-105 transition ease-in-out">
+                <button onClick={addPassword} className="inline-flex items-center bg-green-400 border-0 py-2 px-4 focus:outline-none font-semibold text-xl hover:bg-green-500 rounded-full text-black mt-4 md:mt-0 hover:scale-105 transition ease-in-out gap-2">
                     <FaPlusCircle /> Add
                 </button>
             </div>
